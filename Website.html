@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Real Estate Media - Demo Reel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(238, 90, 82, 0.3);
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(238, 90, 82, 0.4);
+        }
+
+        .section {
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            margin-top: -50px;
+            border-radius: 30px 30px 0 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio (9 / 16 * 100) */
+            height: 0;
+            overflow: hidden;
+            background-color: #000; /* Fallback background for black bars */
+        }
+
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensures the video fits within the aspect ratio without cropping */
+        }
+
+        .video-info {
+            padding: 25px;
+        }
+
+        .video-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .video-info p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .staging-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 100px 50px;
+            margin-top: 50px;
+        }
+
+        .staging-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .staging-example {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .staging-example:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .staging-image-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 66.66%; /* 3:2 Aspect Ratio (2 / 3 * 100) - common for photos */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .before-after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .before-after img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .after-image {
+            clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%); /* Starts completely hidden */
+            transition: clip-path 0.5s ease;
+        }
+
+        /* Hover effect (for desktop) */
+        .staging-example:hover .after-image {
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* Class added by JS for persistent "after" view */
+        .staging-example.show-after .after-image {
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* Class added by JS for persistent "before" view */
+        .staging-example.show-before .after-image {
+            clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+        }
+
+        .staging-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 10; /* Ensure buttons are above images */
+        }
+
+        .staging-label button {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            -webkit-tap-highlight-color: transparent; /* Fix mobile tap highlight */
+        }
+
+        .staging-label button:hover {
+            background: rgba(0,0,0,1);
+        }
+
+        .staging-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .staging-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .staging-info p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white; /* This will apply to stroke="currentColor" in SVGs */
+        }
+
+        .feature-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding: 80px 50px;
+        }
+
+        .contact h2 {
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .contact-info-item a {
+            color: white;
+            text-decoration: none;
+            transition: text-decoration 0.3s ease;
+        }
+
+        .contact-info-item a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-icon {
+            width: 32px;
+            height: 32px;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section {
+                padding: 60px 30px;
+            }
+            
+            .video-grid,
+            .staging-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .staging-grid {
+                gap: 30px;
+            }
+
+            .contact {
+                padding: 50px 20px;
+            }
+
+            .contact-info-item {
+                font-size: 1.3rem;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Elite Real Estate Media</h1>
+            <p>Premium Social Media Content & Virtual Staging for Realtors</p>
+            <a href="#services" class="cta-button">View Our Work</a>
+        </div>
+    </section>
+
+    <section class="section" id="services">
+        <h2>Social Media Content Creation</h2>
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls muted>
+                        <source src="https://video-previews.elements.envatousercontent.com/h264-video-previews/423b1d3e-c885-4d54-b13b-9ef8495967b2/57129562.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h3>Property Showcase Video</h3>
+                    <p>Dynamic property tours that capture attention and drive engagement on social media platforms.</p>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls muted>
+                        <source src="https://video-previews.elements.envatousercontent.com/h264-video-previews/bd5d79be-0693-40ac-8325-f4fdca953333/41018778.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h3>Lifestyle Marketing Content</h3>
+                    <p>Compelling lifestyle videos that help potential buyers envision their future in the property.</p>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls muted>
+                        <source src="https://video-previews.elements.envatousercontent.com/h264-video-previews/8b5e9e41-95c0-4fa6-95a2-77fb4788b793/54777746.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h3>Feature Highlight Reels</h3>
+                    <p>Quick, impactful videos highlighting key property features and selling points.</p>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls muted>
+                        <source src="https://video-previews.elements.envatousercontent.com/h264-video-previews/53f741ee-162e-4511-baed-264bbc7123e6/53585534.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h3>Promotional Content</h3>
+                    <p>Professional promotional videos designed to maximize reach and engagement across all platforms.</p>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls muted>
+                        <source src="https://video-previews.elements.envatousercontent.com/h264-video-previews/7dc65d39-a742-4d20-bc5c-e2c8e82cd77c/46583157.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h3>Custom Property Video</h3>
+                    <p>Dynamic and engaging video content tailored for your specific property needs.</p>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls muted>
+                        <source src="https://video-previews.elements.envatousercontent.com/h264-video-previews/2b25b3ff-bf1c-44be-8c45-5d9f9d92bd60/48888743.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h3>Client Testimonial Video</h3>
+                    <p>Showcasing positive client experiences to build trust and credibility.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <h3>Social Media Optimized</h3>
+                <p>Content tailored for Instagram, Facebook, TikTok, and LinkedIn to maximize engagement</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                </div>
+                <h3>Quick Turnaround</h3>
+                <p>Fast delivery without compromising quality to keep your marketing campaigns on schedule</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg>
+                </div>
+                <h3>Targeted Messaging</h3>
+                <p>Content designed to attract and convert your ideal buyers and sellers</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                </div>
+                <h3>Results Driven</h3>
+                <p>Content strategies proven to increase leads and boost your real estate business</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="staging-section">
+        <h2 style="text-align: center; margin-bottom: 3rem; font-size: 3rem; color: #333;">Virtual Staging Portfolio</h2>
+        <div class="staging-grid">
+            <div class="staging-example">
+                <div class="staging-image-wrapper">
+                    <div class="before-after">
+                        <img src="https://www.virtualstagingai.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbedroom-empty.cd1cbaa3.webp&w=1080&q=80" alt="Empty bedroom before staging" class="before-image">
+                        <img src="https://www.virtualstagingai.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbedroom-modern.716537fd.webp&w=1080&q=80" alt="Modern bedroom after staging" class="after-image">
+                        <div class="staging-label">
+                            <button class="label before-btn">BEFORE</button>
+                            <button class="label after-btn">AFTER</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="staging-info">
+                    <h3>Modern Bedroom Suite</h3>
+                    <p>Transformed an empty bedroom into a stylish modern retreat with contemporary furnishings and warm lighting.</p>
+                </div>
+            </div>
+
+            <div class="staging-example">
+                <div class="staging-image-wrapper">
+                    <div class="before-after">
+                        <img src="https://www.virtualstagingai.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fliving-room-empty.33d43674.webp&w=1080&q=80" alt="Empty living room before staging" class="before-image">
+                        <img src="https://www.virtualstagingai.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fliving-room-midcentury.96596aa7.webp&w=1080&q=80" alt="Mid-century living room after staging" class="after-image">
+                        <div class="staging-label">
+                            <button class="label before-btn">BEFORE</button>
+                            <button class="label after-btn">AFTER</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="staging-info">
+                    <h3>Mid-Century Living Room</h3>
+                    <p>Created an inviting mid-century modern living space that showcases the room's potential for entertaining and relaxation.</p>
+                </div>
+            </div>
+
+            <div class="staging-example">
+                <div class="staging-image-wrapper">
+                    <div class="before-after">
+                        <img src="https://www.virtualstagingai.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkitchen-empty.10abcb2a.webp&w=1080&q=80" alt="Empty kitchen before staging" class="before-image">
+                        <img src="https://www.virtualstagingai.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkitchen-scandinavian.0573aa31.webp&w=1080&q=80" alt="Scandinavian kitchen after staging" class="after-image">
+                        <div class="staging-label">
+                            <button class="label before-btn">BEFORE</button>
+                            <button class="label after-btn">AFTER</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="staging-info">
+                    <h3>Scandinavian Kitchen</h3>
+                    <p>Designed a clean, functional Scandinavian-style kitchen that highlights the space's cooking and dining potential.</p>
+                </div>
+            </div>
+
+            <div class="staging-example">
+                <div class="staging-image-wrapper">
+                    <div class="before-after">
+                        <img src="https://www.virtualstagingai.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhome-office-empty.16f9d753.webp&w=1080&q=80" alt="Empty home office before staging" class="before-image">
+                        <img src="https://www.virtualstagingai.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhome-office-modern.30953252.webp&w=1080&q=80" alt="Modern home office after staging" class="after-image">
+                        <div class="staging-label">
+                            <button class="label before-btn">BEFORE</button>
+                            <button class="label after-btn">AFTER</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="staging-info">
+                    <h3>Modern Home Office</h3>
+                    <p>Created a productive and inspiring workspace that appeals to today's remote work lifestyle with modern furnishings.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="features" style="margin-top: 60px;">
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                </div>
+                <h3>95% More Affordable</h3>
+                <p>Virtual staging costs a fraction of traditional staging while delivering the same impact</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                </div>
+                <h3>24-48 Hour Delivery</h3>
+                <p>Get your staged photos back quickly to keep your listings moving</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M5.5 10a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM10 16.5a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0zM16.5 10a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"></path></svg>
+                </div>
+                <h3>Multiple Style Options</h3>
+                <p>Choose from modern, traditional, contemporary, and luxury staging styles</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                </div>
+                <h3>High-Quality Results</h3>
+                <p>Professional-grade virtual staging that looks completely realistic</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <h2>Contact Me</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem; color: rgba(255,255,255,0.9);">Ready to elevate your real estate marketing? Reach out today!</p>
+        
+        <div class="contact-info-item">
+            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-3.67-3.67A19.79 19.79 0 0 1 2 4.18 2 2 0 0 1 4.18 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <a href="tel:+19045866689">904-586-6689</a>
+        </div>
+        
+        <div class="contact-info-item">
+            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <a href="mailto:Alisneldooliva@yahoo.com">Alisneldooliva@yahoo.com</a>
+        </div>
+    </section>
+
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.video-card, .staging-example, .feature').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add hover effects for videos (play on hover, pause on leave)
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('mouseenter', () => video.play());
+            video.addEventListener('mouseleave', () => video.pause());
+            // Optionally, pause when video is no longer visible (off-screen)
+            new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0 }).observe(video);
+        });
+
+        // Staging image show/hide with buttons
+        document.querySelectorAll('.staging-example').forEach(card => {
+            const beforeBtn = card.querySelector('.before-btn');
+            const afterBtn = card.querySelector('.after-btn');
+
+            beforeBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                card.classList.add('show-before');
+                card.classList.remove('show-after');
+            });
+
+            afterBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                card.classList.add('show-after');
+                card.classList.remove('show-before');
+            });
+        });
+    </script>
+</body>
+</html>
